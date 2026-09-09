@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio - Veterinaria San Marcos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="d-flex">
+
+    <nav class="sidebar bg-primary text-white d-flex flex-column p-3">
+      <span class="navbar-brand text-white mb-2">🐾 Veterinaria San Marcos</span>
+      <div class="small text-white-50 mb-4">
+        <div id="nombreUsuario">-</div>
+        <div id="rolUsuario">-</div>
+      </div>
+
+      <ul class="nav nav-pills flex-column mb-auto gap-1">
+        <li class="nav-item">
+          <a href="veterinaria.html" class="nav-link text-white active" data-modulo="inicio">🏠 Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="citas.html" class="nav-link text-white" data-modulo="citas">📅 Citas</a>
+        </li>
+        <li class="nav-item">
+          <a href="ficha-clinica.html" class="nav-link text-white" data-modulo="fichas">📋 Ficha Clínica</a>
+        </li>
+        <li class="nav-item">
+          <a href="vacunacion.html" class="nav-link text-white" data-modulo="vacunacion">💉 Vacunación</a>
+        </li>
+        <li class="nav-item">
+          <a href="reportes.html" class="nav-link text-white" data-modulo="reportes">📊 Reportes</a>
+        </li>
+      </ul>
+
+      <button type="button" class="btn btn-outline-light btn-sm mt-4" onclick="cerrarSesion()">Cerrar sesión</button>
+    </nav>
+
+    <main class="content flex-grow-1 p-5">
+      <header class="text-center mb-5">
+        <h1 class="text-primary fw-bold">¡Bienvenido/a!</h1>
+        <p class="text-muted fs-5">Selecciona un módulo en el menú lateral para comenzar.</p>
+      </header>
+
+      <div class="row g-4 align-items-center">
+        <section class="col-lg-6">
+          <article class="card shadow-sm h-100">
+            <img src="https://placehold.co/600x350/1d6fa5/ffffff?text=Veterinaria+San+Marcos" class="card-img-top" alt="Fachada de Veterinaria San Marcos">
+            <div class="card-body">
+              <h2 class="h5 text-primary">Sobre nosotros</h2>
+              <p class="card-text text-muted">
+                Veterinaria San Marcos atiende en Rancagua desde 2009. Contamos con 3 médicos
+                veterinarios, 1 técnico veterinario y 1 recepcionista, atendiendo un promedio
+                de 25 pacientes al día entre perros, gatos, conejos y aves.
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <section class="col-lg-6">
+          <article class="card shadow-sm h-100">
+            <div class="card-body">
+              <h2 class="h5 text-primary mb-3">Video institucional</h2>
+              <div class="ratio ratio-16x9">
+                <video controls poster="https://placehold.co/600x350/0d3b66/ffffff?text=Video+institucional">
+                  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                  Tu navegador no soporta la reproducción de video.
+                </video>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+
+  </div>
+
+  <footer class="text-center bg-primary text-white py-3 small">
+    &copy; 2026 Veterinaria San Marcos
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    protegerPagina("inicio");
+  </script>
+</body>
+</html>
