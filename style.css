@@ -1,0 +1,62 @@
+:root {
+  --azul-oscuro: #0d3b66;
+  --azul-medio: #1d6fa5;
+  --azul-claro: #eaf3fb;
+}
+
+body {
+  background-color: var(--azul-claro);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  border-radius: 12px;
+}
+
+.navbar {
+  background-color: var(--azul-oscuro) !important;
+}
+
+.btn-primary {
+  background-color: var(--azul-medio);
+  border-color: var(--azul-medio);
+}
+
+.btn-primary:hover {
+  background-color: var(--azul-oscuro);
+  border-color: var(--azul-oscuro);
+}
+
+.modulo-card {
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.15s ease;
+}
+
+.modulo-card:hover {
+  transform: translateY(-4px);
+}
+
+.modulo-icon {
+  font-size: 2.5rem;
+}
+
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  background-color: var(--azul-oscuro) !important;
+}
+
+.sidebar .nav-link.active {
+  background-color: var(--azul-medio);
+}
+
+.sidebar .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.content {
+  min-height: 100vh;
+}

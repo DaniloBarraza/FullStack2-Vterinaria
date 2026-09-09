@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citas - Veterinaria San Marcos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="d-flex">
+
+    <nav class="sidebar bg-primary text-white d-flex flex-column p-3">
+      <span class="navbar-brand text-white mb-2">🐾 Veterinaria San Marcos</span>
+      <div class="small text-white-50 mb-4">
+        <div id="nombreUsuario">-</div>
+        <div id="rolUsuario">-</div>
+      </div>
+
+      <ul class="nav nav-pills flex-column mb-auto gap-1">
+        <li class="nav-item">
+          <a href="veterinaria.html" class="nav-link text-white" data-modulo="inicio">🏠 Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="citas.html" class="nav-link text-white active" data-modulo="citas">📅 Citas</a>
+        </li>
+        <li class="nav-item">
+          <a href="ficha-clinica.html" class="nav-link text-white" data-modulo="fichas">📋 Ficha Clínica</a>
+        </li>
+        <li class="nav-item">
+          <a href="vacunacion.html" class="nav-link text-white" data-modulo="vacunacion">💉 Vacunación</a>
+        </li>
+        <li class="nav-item">
+          <a href="reportes.html" class="nav-link text-white" data-modulo="reportes">📊 Reportes</a>
+        </li>
+      </ul>
+
+      <button type="button" class="btn btn-outline-light btn-sm mt-4" onclick="cerrarSesion()">Cerrar sesión</button>
+    </nav>
+
+    <main class="content flex-grow-1 p-5">
+      <header class="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-3">
+        <div>
+          <h1 class="text-primary fw-bold mb-1">Módulo de Citas</h1>
+          <p class="text-muted mb-0">
+            Agenda de horas en línea: reemplaza la agenda física, evita la pérdida de bloques
+            horarios por inasistencias y permite confirmar la hora sin llamar por teléfono.
+          </p>
+        </div>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalHorarios">
+            Horarios disponibles hoy
+          </button>
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCitasAgendadas">
+            Citas agendadas hoy
+          </button>
+        </div>
+      </header>
+
+      <section class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="h5 text-primary mb-3">Agendar nueva cita</h2>
+
+          <form id="formCitas">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="citaDueno" class="form-label">Nombre del dueño</label>
+                <input type="text" class="form-control" id="citaDueno" name="citaDueno" autocomplete="name" placeholder="Ej: Juan Pérez">
+              </div>
+              <div class="col-md-6">
+                <label for="citaMascota" class="form-label">Nombre de la mascota</label>
+                <input type="text" class="form-control" id="citaMascota" name="citaMascota" autocomplete="off" placeholder="Ej: Firulais">
+              </div>
+              <div class="col-md-4">
+                <label for="citaTipo" class="form-label">Tipo de mascota</label>
+                <select class="form-select" id="citaTipo" name="citaTipo">
+                  <option selected disabled value="">Selecciona una opción</option>
+                  <option>Perro</option>
+                  <option>Gato</option>
+                  <option>Conejo</option>
+                  <option>Ave</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="citaMotivo" class="form-label">Motivo de consulta</label>
+                <select class="form-select" id="citaMotivo" name="citaMotivo">
+                  <option selected disabled value="">Selecciona una opción</option>
+                  <option>Consulta general</option>
+                  <option>Vacunación</option>
+                  <option>Cirugía menor</option>
+                  <option>Desparasitación</option>
+                  <option>Control de peso</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="citaFecha" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="citaFecha" name="citaFecha">
+              </div>
+              <div class="col-md-4">
+                <label for="citaHorario" class="form-label">Horario disponible</label>
+                <select class="form-select" id="citaHorario" name="citaHorario">
+                  <option selected disabled value="">Selecciona un horario</option>
+                  <option>09:00 hrs</option>
+                  <option>09:30 hrs</option>
+                  <option>10:30 hrs</option>
+                  <option>11:00 hrs</option>
+                  <option>15:00 hrs</option>
+                  <option>16:30 hrs</option>
+                </select>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary mt-4" onclick="validarFormularioCitas()">Agendar cita</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <div class="modal fade" id="modalHorarios" tabindex="-1" aria-labelledby="modalHorariosLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="h5 modal-title text-primary" id="modalHorariosLabel">Horarios disponibles hoy</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge bg-success p-2">09:00</span>
+            <span class="badge bg-success p-2">09:30</span>
+            <span class="badge bg-secondary p-2">10:00</span>
+            <span class="badge bg-success p-2">10:30</span>
+            <span class="badge bg-success p-2">11:00</span>
+            <span class="badge bg-secondary p-2">11:30</span>
+            <span class="badge bg-success p-2">15:00</span>
+            <span class="badge bg-secondary p-2">15:30</span>
+            <span class="badge bg-success p-2">16:30</span>
+          </div>
+          <p class="small text-muted mt-3 mb-0">
+            <span class="badge bg-success">&nbsp;</span> Disponible
+            &nbsp;&nbsp;
+            <span class="badge bg-secondary">&nbsp;</span> Ocupado
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalCitasAgendadas" tabindex="-1" aria-labelledby="modalCitasAgendadasLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="h5 modal-title text-primary" id="modalCitasAgendadasLabel">Citas agendadas hoy</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              10:00 - Firulais (Consulta general)
+              <span class="badge bg-primary rounded-pill">Confirmada</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              11:30 - Michi (Vacunación)
+              <span class="badge bg-primary rounded-pill">Confirmada</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              15:30 - Rocky (Desparasitación)
+              <span class="badge bg-warning text-dark rounded-pill">Pendiente</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center bg-primary text-white py-3 small">
+    &copy; 2026 Veterinaria San Marcos
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="app.js"></script>
+  <script>
+    protegerPagina("citas");
+  </script>
+</body>
+</html>
